@@ -1,7 +1,6 @@
-#include "UI/ConsoleApp.h"
-#include "Windows/ProcessUtils.h"
+#include "Gui/GuiApp.h"
 
-int main()
+int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int showCommand)
 {
-    return RunConsoleApp(GetProcessList());
+    return RunGuiApp(instance, showCommand);
 }
