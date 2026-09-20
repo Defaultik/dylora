@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="dylora.vcxproj" Id="6459cdbe-6ab2-454b-975c-076e52dc3167" />
+</Solution>
