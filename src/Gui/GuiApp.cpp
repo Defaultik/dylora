@@ -714,6 +714,9 @@ int RunGuiApp(HINSTANCE instance, int showCommand)
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    // Nothing here needs persisting across launches, and writing/reading it
+    // just leaves an imgui.ini next to the exe - disable it entirely.
+    io.IniFilename = nullptr;
 
     ApplyDyloraTheme();
     ImFont* titleFont = LoadInterfaceFont(io);
@@ -724,12 +727,23 @@ int RunGuiApp(HINSTANCE instance, int showCommand)
     AppState state;
     RefreshProcessList(state);
 
+    // The UI never animates on its own (no timers, no continuous
+    // transitions) - the only thing that ever needs a steady redraw is a
+    // blinking caret while a text field is focused. So we wait indefinitely
+    // for real input/window messages, and only fall back to a short polling
+    // timeout while a text field actually has focus.
     bool running = true;
+    bool needsCaretBlinkWake = false;
     while (running)
     {
+        DWORD waitTimeout = needsCaretBlinkWake ? 100 : INFINITE;
+        MsgWaitForMultipleObjects(0, nullptr, FALSE, waitTimeout, QS_ALLINPUT);
+
+        bool gotMessage = false;
         MSG msg;
         while (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
         {
+            gotMessage = true;
             TranslateMessage(&msg);
             DispatchMessage(&msg);
             if (msg.message == WM_QUIT)
@@ -737,6 +751,17 @@ int RunGuiApp(HINSTANCE instance, int showCommand)
         }
         if (!running)
             break;
+
+        // Nothing actually arrived and nothing needs a periodic redraw
+        // (no focused text field) - truly nothing to draw. Go straight back
+        // to waiting instead of building and presenting an unchanged frame.
+        if (!gotMessage && !needsCaretBlinkWake)
+            continue;
+
+        // Minimized: nothing is visible, so there is nothing to build or
+        // present. Keep waiting for messages without touching the GPU.
+        if (IsIconic(hwnd))
+            continue;
 
         if (g_swapChainOccluded && g_swapChain->Present(0, DXGI_PRESENT_TEST) == DXGI_STATUS_OCCLUDED)
         {
@@ -796,6 +821,11 @@ int RunGuiApp(HINSTANCE instance, int showCommand)
 
         HRESULT hr = g_swapChain->Present(1, 0);
         g_swapChainOccluded = (hr == DXGI_STATUS_OCCLUDED);
+
+        // Only keep polling on a timeout while a text field is actually
+        // focused (its caret needs to blink without new input); otherwise
+        // the next loop iteration goes back to waiting indefinitely.
+        needsCaretBlinkWake = io.WantTextInput;
     }
 
     ImGui_ImplDX11_Shutdown();

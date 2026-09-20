@@ -1,6 +1,6 @@
 <div align="center">
   
-<img src="https://readme-typing-svg.demolab.com?font=Archivo&weight=800&size=30&pause=1000&color=6704F7&center=true&vCenter=true&width=500&lines=Dylora" alt="Typing SVG" />
+<img src="https://i.imgur.com/UFxR4mx.png" alt="Logo Banner" />
 <br/>
 
 [![Platform](https://img.shields.io/badge/Platform-Windows-informational?style=flat-square)](https://github.com/Defaultik/sms_spoofer)
@@ -18,7 +18,7 @@ A clean CLI, Perfect for any use case
 
 ## 📸 Preview
 
-> ![alt-text](https://i.imgur.com/XAl45bQ.png)
+> ![alt-text](https://i.imgur.com/k0VGWQu.png)
 
 ---
 
