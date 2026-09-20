@@ -31,7 +31,6 @@
     <ClCompile Include="src\Core\ProcessTarget.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\UI\ConsoleApp.cpp" />
-    <ClCompile Include="src\UI\Logger.cpp" />
     <ClCompile Include="src\Windows\ProcessUtils.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -62,9 +62,6 @@
     <ClCompile Include="src\UI\ConsoleApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UI\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Windows\ProcessUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
