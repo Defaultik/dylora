@@ -39,6 +39,9 @@
     <ClInclude Include="include\UI\ConsoleApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Core\ProcessTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Injector.cpp">

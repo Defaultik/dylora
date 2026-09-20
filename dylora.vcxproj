@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\ProcessTarget.h" />
     <ClInclude Include="include\UI\ConsoleApp.h" />
     <ClInclude Include="include\Windows\ProcessUtils.h" />
   </ItemGroup>
