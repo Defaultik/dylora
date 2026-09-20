@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -16,7 +16,7 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{75cb8574-80bc-4389-aac0-324f225a2c95}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI">
+    <Filter Include="Source Files\Gui">
       <UniqueIdentifier>{125b53dc-f71c-4823-ab18-e7a359cbc94c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Windows">
@@ -25,18 +25,27 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{33985c44-0b83-4aff-8e56-79eb1b305f7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\UI">
+    <Filter Include="Header Files\Gui">
       <UniqueIdentifier>{e1f1077b-edbf-443d-bf14-e8a55e0c362d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Windows">
       <UniqueIdentifier>{fe604454-2ac2-45a3-b809-c25ebc456966}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor">
+      <UniqueIdentifier>{a1b2c3d4-1111-4b04-88eb-625fbe52ebfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\imgui">
+      <UniqueIdentifier>{a1b2c3d4-2222-4b04-88eb-625fbe52ebfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vendor\imgui\backends">
+      <UniqueIdentifier>{a1b2c3d4-3333-4b04-88eb-625fbe52ebfb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Windows\ProcessUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\UI\ConsoleApp.h">
+    <ClInclude Include="include\Gui\GuiApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Core\ProcessTarget.h">
@@ -48,6 +57,40 @@
     <ClInclude Include="include\Core\Injector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\imgui\imconfig.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imgui_internal.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imstb_rectpack.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imstb_textedit.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\imstb_truetype.h">
+      <Filter>Vendor\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_win32.h">
+      <Filter>Vendor\imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\imgui\backends\imgui_impl_dx11.h">
+      <Filter>Vendor\imgui\backends</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="dylora.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dylora.ico">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Injector.cpp">
@@ -59,7 +102,7 @@
     <ClCompile Include="src\Core\IInjectionMethod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UI\ConsoleApp.cpp">
+    <ClCompile Include="src\Gui\GuiApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Windows\ProcessUtils.cpp">
@@ -67,6 +110,24 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_draw.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_tables.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\imgui_widgets.cpp">
+      <Filter>Vendor\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Vendor\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>Vendor\imgui\backends</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
