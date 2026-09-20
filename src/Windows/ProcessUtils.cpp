@@ -1,27 +1,27 @@
+#include "Windows/ProcessUtils.h"
+
 #include <windows.h>
 #include <tlhelp32.h>
-#include <string>
-#include <vector>
-
-#include "Windows/ProcessUtils.h"
 
 std::vector<ProcessInfo> GetProcessList()
 {
-    std::vector<ProcessInfo> result;
+    std::vector<ProcessInfo> processes;
 
-    HANDLE snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-    if (snap == INVALID_HANDLE_VALUE)
-        return result;
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (snapshot == INVALID_HANDLE_VALUE)
+        return processes;
 
-    PROCESSENTRY32W pe{};
-    pe.dwSize = sizeof(pe);
+    PROCESSENTRY32W entry{};
+    entry.dwSize = sizeof(entry);
 
-    if (Process32FirstW(snap, &pe)) {
-        do {
-            result.push_back({ std::wstring(pe.szExeFile), static_cast<std::uint32_t>(pe.th32ProcessID) });
-        } while (Process32NextW(snap, &pe));
+    if (Process32FirstW(snapshot, &entry))
+    {
+        do
+        {
+            processes.push_back({ entry.szExeFile, static_cast<std::uint32_t>(entry.th32ProcessID) });
+        } while (Process32NextW(snapshot, &entry));
     }
 
-    CloseHandle(snap);
-    return result;
+    CloseHandle(snapshot);
+    return processes;
 }
