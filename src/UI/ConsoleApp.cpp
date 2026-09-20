@@ -1,8 +1,10 @@
 #include "UI/ConsoleApp.h"
 #include "Core/ProcessTarget.h"
+#include "Core/Injector.h"
 
 #include <fcntl.h>
 #include <io.h>
+#include <conio.h>
 #include <iostream>
 #include <string>
 #include <cwctype>
@@ -31,6 +33,25 @@ namespace
             return std::iswdigit(static_cast<wint_t>(c)) != 0;
             });
     }
+
+    void PrintColored(const std::wstring& text, WORD color)
+    {
+        HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+        CONSOLE_SCREEN_BUFFER_INFO info;
+        GetConsoleScreenBufferInfo(console, &info);
+        WORD originalAttributes = info.wAttributes;
+
+        SetConsoleTextAttribute(console, color);
+        std::wcout << text << L"\n";
+        SetConsoleTextAttribute(console, originalAttributes);
+    }
+
+    void WaitForAnyKey()
+    {
+        std::wcout << L"\nPress any key to exit..." << std::flush;
+        _getwch();
+    }
 }
 
 int RunConsoleApp(const std::vector<ProcessInfo>& processes)
@@ -55,5 +76,19 @@ int RunConsoleApp(const std::vector<ProcessInfo>& processes)
 
     std::wcout << L"Found: [" << target.Pid() << L"] " << target.Name() << L"\n";
 
-    return 0;
+    std::wcout << L"\nEnter DLL path to inject: " << std::flush;
+    std::wstring dllPath;
+    std::getline(std::wcin, dllPath);
+
+    std::wstring error;
+    bool success = InjectDll(target, dllPath, &error);
+
+    if (success)
+        PrintColored(L"DLL injected successfully.", FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    else
+        PrintColored(L"Injection failed: " + error, FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+    WaitForAnyKey();
+
+    return success ? 0 : 1;
 }

@@ -7,7 +7,6 @@
 
 namespace
 {
-    // Права, которых достаточно будущему механизму инъекции (запись/чтение памяти + создание потока).
     constexpr DWORD kTargetAccess =
         PROCESS_QUERY_INFORMATION |
         PROCESS_CREATE_THREAD |
@@ -25,7 +24,6 @@ namespace
             });
     }
 
-    // pid == 0, если процесс с таким именем не найден.
     std::pair<std::uint32_t, std::wstring> FindByName(const std::wstring& name)
     {
         HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -53,7 +51,6 @@ namespace
         return result;
     }
 
-    // Пустая строка, если процесс с таким pid не найден.
     std::wstring FindNameByPid(std::uint32_t pid)
     {
         HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);

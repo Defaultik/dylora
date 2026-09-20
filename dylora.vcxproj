@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\IInjectionMethod.h" />
+    <ClInclude Include="include\Core\Injector.h" />
     <ClInclude Include="include\Core\ProcessTarget.h" />
     <ClInclude Include="include\UI\ConsoleApp.h" />
     <ClInclude Include="include\Windows\ProcessUtils.h" />
@@ -145,6 +147,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
