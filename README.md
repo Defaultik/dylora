@@ -8,7 +8,7 @@
 <br/>
 
 **Utility to load .DLL files into processes**  
-A clean CLI, Perfect for any use case
+A clean GUI, Perfect for any use case
 
 [🐛 Report Bug](https://github.com/Defaultik/dylora/issues) / [💡 Request Feature](https://github.com/Defaultik/dylora/issues)
 
